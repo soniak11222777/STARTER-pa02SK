@@ -103,7 +103,11 @@ sort(movieList.begin(), movieList.end());
       it++;
        }
        sort(totals.begin(), totals.end() , [] (const Movie& a, const Movie&b) {
-		return a.movieRating > b.movieRating; });
+        if (a.movieRating != b.movieRating){
+		return a.movieRating > b.movieRating; 
+        }
+        return a.movieRating < b.movieRating; 
+        });
         for (Movie a: totals){
         cout << a << endl;
        }
