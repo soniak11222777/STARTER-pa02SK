@@ -35,21 +35,26 @@ int main(int argc, char** argv){
     }
   
     // Create an object of a STL data-structure to store all the movies
-
+    vector<Movie> movieList;
     string line, movieName;
     double movieRating;
     // Read each file and store the name and rating
     while (getline (movieFile, line) && parseLine(line, movieName, movieRating)){
             // Use std::string movieName and double movieRating
             // to construct your Movie objects
-            // cout << movieName << " has rating " << movieRating << endl;
+            movieList.push_back(Movie(movieName, movieRating));
+            //cout << movieName << " has rating " << movieRating << endl;
             // insert elements into your data structure
     }
 
     movieFile.close();
-
+cout << endl;
     if (argc == 2){
             //print all the movies in ascending alphabetical order of movie names
+            sort(movieList.begin(), movieList.end());
+            for(auto& e : movieList ){
+                cout << e << endl;
+            }
             return 0;
     }
 
@@ -70,16 +75,61 @@ int main(int argc, char** argv){
     //  For each prefix,
     //  Find all movies that have that prefix and store them in an appropriate data structure
     //  If no movie with that prefix exists print the following message
-    cout << "No movies found with prefix "<<"<replace with prefix>" << endl;
+    vector<Movie> totals;
+    vector<pair<string, Movie>> h_ratings;
+   /* Movie h_rated;
+    int h_rating;*/
+
+
+
+sort(movieList.begin(), movieList.end());
+    for (int i = 0; i<prefixes.size();i++){
+        Movie a(prefixes[i], 0.0);
+       vector<Movie>::iterator it = lower_bound(movieList.begin(),movieList.end(), a);
+       //cout << "Prefix: " << prefixes[i] << " | lower_bound landed on: " << it->movieName << endl;
+       if (it == movieList.end() || it->movieName.find(prefixes[i]) != 0){
+        cout << "No movies found with prefix "<< prefixes[i] << endl;
+       }
+       else {
+       /*h_rated = *it;
+       h_rating =  it->movieRating;*/
+       while(it != movieList.end() && it->movieName.find(prefixes[i]) == 0){
+        totals.push_back(*it);
+        /*if(it->movieRating > h_rating){
+            h_rating =  it->movieRating;
+            h_rated = *it;
+        }
+        it++;
+       }*/
+      it++;
+       }
+       sort(totals.begin(), totals.end() , [] (const Movie& a, const Movie&b) {
+		return a.movieRating > b.movieRating; });
+        for (Movie a: totals){
+        cout << a << endl;
+       }
+        h_ratings.push_back({prefixes[i], totals[0]});
+        cout<< endl;
+        totals.clear();
+    }
+    }
+
 
     //  For each prefix,
     //  Print the highest rated movie with that prefix if it exists.
-    cout << "Best movie with prefix " << "<replace with prefix>" << " is: " << "replace with movie name" << " with rating " << std::fixed << std::setprecision(1) << "replace with movie rating" << endl;
-
-    return 0;
+ 
+    for (auto& each : h_ratings ){
+    cout << "Best movie with prefix " << each.first << " is: " << each.second.movieName << " with rating " << std::fixed << std::setprecision(1) << each.second.movieRating << endl;
+}
+ return 0;
 }
 
 /* Add your run time analysis for part 3 of the assignment here as commented block*/
+
+/*
+
+
+*/
 
 bool parseLine(string &line, string &movieName, double &movieRating) {
     int commaIndex = line.find_last_of(",");
@@ -90,3 +140,4 @@ bool parseLine(string &line, string &movieName, double &movieRating) {
     }
     return true;
 }
+
