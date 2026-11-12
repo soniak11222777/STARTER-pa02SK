@@ -48,7 +48,6 @@ int main(int argc, char** argv){
     }
 
     movieFile.close();
-cout << endl;
     if (argc == 2){
             //print all the movies in ascending alphabetical order of movie names
             sort(movieList.begin(), movieList.end());
