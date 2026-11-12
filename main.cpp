@@ -106,7 +106,7 @@ sort(movieList.begin(), movieList.end());
         if (a.movieRating != b.movieRating){
 		return a.movieRating > b.movieRating; 
         }
-        return a.movieRating < b.movieRating; 
+        return a.movieName < b.movieName; 
         });
         for (Movie a: totals){
         cout << a << endl;
