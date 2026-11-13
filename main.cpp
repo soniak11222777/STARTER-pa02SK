@@ -81,7 +81,7 @@ sort(movieList.begin(), movieList.end());
         Movie a(prefixes[i], 0.0);
        vector<Movie>::iterator it = lower_bound(movieList.begin(),movieList.end(), a);
        if (it == movieList.end() || it->movieName.find(prefixes[i]) != 0){
-        cout << "No movies found with prefix "<< prefixes[i] << endl;
+        cout << "No movies found with prefix "<< prefixes[i] << "\n";
        }
        else {
        while(it != movieList.end() && it->movieName.find(prefixes[i]) == 0){
