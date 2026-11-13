@@ -107,7 +107,7 @@ sort(movieList.begin(), movieList.end());
     //  Print the highest rated movie with that prefix if it exists.
  
     for (auto& each : h_ratings ){
-    cout << "Best movie with prefix " << each.first << " is: " << each.second.movieName << " with rating " << std::fixed << std::setprecision(1) << each.second.movieRating << endl;
+    cout << "Best movie with prefix " << each.first << " is: " << each.second.movieName << " with rating " << std::fixed << std::setprecision(1) << each.second.movieRating << "\n";
 }
  return 0;
 }
@@ -115,7 +115,23 @@ sort(movieList.begin(), movieList.end());
 /* Add your run time analysis for part 3 of the assignment here as commented block*/
 
 /*
-The parameters that affect this runtime are n,m, and k.
+The parameters that affect this runtime are n,m,k, and l. 
+We begin sorting, which looks at l name length and sorts each element alphabetically for 
+nlogn making it L * NlogN time. Afterwards we loop M times over the prefixes, each time finding
+the first instance using an iterator found by function lower_bound (logN- utilizes binary search) and
+the dummy Movie object (L length string) so we get LlogN. In the while loop we check K times for 
+string L lengths, so K*L, and by calling the lambda altered sort function which adjusts for the rating 
+numerical value for K instances it operates KlogK times. Subsequently printing the values for each 
+prefix is K times L for the string in each so K*L again with L cost to push back again. Since we 
+iterate through every prefix in the final result printing the name it is M*L.
+
+ All of this being in the for loop means the total time is
+
+O(L *NlogN + M(LlogN + 2K*L + KlogK) +ML)
+but can be simplified as O(NlogN + MlogN)
+
+
+
 
 */
 
