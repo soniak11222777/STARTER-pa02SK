@@ -76,11 +76,6 @@ int main(int argc, char** argv){
     //  If no movie with that prefix exists print the following message
     vector<Movie> totals;
     vector<pair<string, Movie>> h_ratings;
-   /* Movie h_rated;
-    int h_rating;*/
-
-
-
 sort(movieList.begin(), movieList.end());
     for (int i = 0; i<prefixes.size();i++){
         Movie a(prefixes[i], 0.0);
@@ -100,23 +95,13 @@ sort(movieList.begin(), movieList.end());
         return a.movieName < b.movieName; 
         });
         for (Movie a: totals){
-        cout << a << "\n";
+        cout << a << endl;
        }
         h_ratings.push_back({prefixes[i], totals[0]});
-        cout<< "\n";
+        cout << "\n";
         totals.clear();
     }
     }
-
-/*if(it->movieRating > h_rating){
-            h_rating =  it->movieRating;
-            h_rated = *it;
-        }
-        it++;
-       }*/
-
-      /*h_rated = *it;
-       h_rating =  it->movieRating;*/
 
     //  For each prefix,
     //  Print the highest rated movie with that prefix if it exists.
