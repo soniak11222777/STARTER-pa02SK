@@ -115,28 +115,50 @@ sort(movieList.begin(), movieList.end());
 /* Add your run time analysis for part 3 of the assignment here as commented block*/
 
 /*
+Time Complexity
 The parameters that affect this runtime are n,m,k, and l. 
 We begin sorting, which looks at l name length and sorts each element alphabetically for 
 nlogn making it L * NlogN time. Afterwards we loop M times over the prefixes, each time finding
 the first instance using an iterator found by function lower_bound (logN- utilizes binary search) and
 the dummy Movie object (L length string) so we get LlogN. In the while loop we check K times for 
-string L lengths, so K*L, and by calling the lambda altered sort function which adjusts for the rating 
+name L lengths, so K*L, and by calling the lambda altered sort function which adjusts for the rating 
 numerical value for K instances it operates KlogK times. Subsequently printing the values for each 
 prefix is K times L for the string in each so K*L again with L cost to push back again. Since we 
-iterate through every prefix in the final result printing the name it is M*L.
+iterate through every prefix in the final result printing the name/values it is M*L.
 
  All of this being in the for loop means the total time is
 
-O(L *NlogN + M(LlogN + 2K*L + KlogK) +ML)
-but can be simplified as O(NlogN + MlogN)
+O(L *NlogN + M(LlogN + 2K*L + KlogK + L) +ML)
+but due to the constained length of movie titles making L somewhat constant
+it can be simplified as O(M(logN + KlogK))
 
 times
-input_20_random.csv, prefix_large.txt: 0.073s
-input_100_random.csv, prefix_large.txt: 0.050s
-input_1000_random.csv, prefix_large.txt: 0.048s
-input_76920_random.csv, prefix_large.txt: 1.450s
+input_20_random.csv, prefix_large.txt: 0.062s
+input_100_random.csv, prefix_large.txt: 0.398s
+input_1000_random.csv, prefix_large.txt: 0.068s
+input_76920_random.csv, prefix_large.txt: 1.405s
 
+Space Complexity
+The primary affecting parameters are M, K, and L.
+We begin assuming n and m are already stored but when we traverse and store into the vector and vector
+pair, we get O(L*M) for the highest ratings because each prefix has a rating present, and we get O(L*K)
+for totals as it clears following the print out of the values for each individual prefix.
 
+Combined this simplifies to O((M+K)*L)
+
+I was trying to design for low time complexity, close to implementation 3 of about MlogN, and wasn't 
+necessarily prioritizing space complexity though it happened to become smaller than the time complexity.
+I knew we would have to iterate at least M times and planned on using either a bst or any available
+pre-provided function utilizing binary search to get log N as the factor.
+
+I was able to achieve a decently low time complexity though the algorithm used more traversals than I
+intially anticipated, though they were smaller in range.
+
+Similarly, the space complexity is ok too as while I didn't anticipate creating multiple output vectors
+they do not compare to the size of the movieList N vector which I didnt have to copy or include in the
+space complexity.
+
+Time complexity was much harder to achieve than space complexity.
 */
 
 bool parseLine(string &line, string &movieName, double &movieRating) {
