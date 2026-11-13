@@ -81,7 +81,7 @@ sort(movieList.begin(), movieList.end());
         Movie a(prefixes[i], 0.0);
        vector<Movie>::iterator it = lower_bound(movieList.begin(),movieList.end(), a);
        if (it == movieList.end() || it->movieName.find(prefixes[i]) != 0){
-        cout << "No movies found with prefix "<< prefixes[i] << "\n";
+        cout << "No movies found with prefix "<< prefixes[i] << endl;
        }
        else {
        while(it != movieList.end() && it->movieName.find(prefixes[i]) == 0){
@@ -133,10 +133,10 @@ but due to the constained length of movie titles making L somewhat constant
 it can be simplified as O(M(logN + KlogK))
 
 times
-input_20_random.csv, prefix_large.txt: 0.095
-input_100_random.csv, prefix_large.txt: 0.080
-input_1000_random.csv, prefix_large.txt: 0.128
-input_76920_random.csv, prefix_large.txt: 0.512
+input_20_random.csv, prefix_large.txt: 0.062
+input_100_random.csv, prefix_large.txt: 0.398
+input_1000_random.csv, prefix_large.txt: 0.068
+input_76920_random.csv, prefix_large.txt: 1.405
 
 Space Complexity
 The primary affecting parameters are M, K, and L.
