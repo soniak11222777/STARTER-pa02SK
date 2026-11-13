@@ -107,7 +107,7 @@ sort(movieList.begin(), movieList.end());
     //  Print the highest rated movie with that prefix if it exists.
  
     for (auto& each : h_ratings ){
-    cout << "Best movie with prefix " << each.first << " is: " << each.second.movieName << " with rating " << std::fixed << std::setprecision(1) << each.second.movieRating << "\n";
+    cout << "Best movie with prefix " << each.first << " is: " << each.second.movieName << " with rating " << std::fixed << std::setprecision(1) << each.second.movieRating << endl;
 }
  return 0;
 }
