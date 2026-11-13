@@ -133,10 +133,10 @@ but due to the constained length of movie titles making L somewhat constant
 it can be simplified as O(M(logN + KlogK))
 
 times
-input_20_random.csv, prefix_large.txt: 0.062s
-input_100_random.csv, prefix_large.txt: 0.398s
-input_1000_random.csv, prefix_large.txt: 0.068s
-input_76920_random.csv, prefix_large.txt: 1.405s
+input_20_random.csv, prefix_large.txt: 0.095
+input_100_random.csv, prefix_large.txt: 0.080
+input_1000_random.csv, prefix_large.txt: 0.128
+input_76920_random.csv, prefix_large.txt: 0.512
 
 Space Complexity
 The primary affecting parameters are M, K, and L.
