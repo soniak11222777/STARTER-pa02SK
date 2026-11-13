@@ -85,21 +85,12 @@ sort(movieList.begin(), movieList.end());
     for (int i = 0; i<prefixes.size();i++){
         Movie a(prefixes[i], 0.0);
        vector<Movie>::iterator it = lower_bound(movieList.begin(),movieList.end(), a);
-       //cout << "Prefix: " << prefixes[i] << " | lower_bound landed on: " << it->movieName << endl;
        if (it == movieList.end() || it->movieName.find(prefixes[i]) != 0){
-        cout << "No movies found with prefix "<< prefixes[i] << endl;
+        cout << "No movies found with prefix "<< prefixes[i] << "\n";
        }
        else {
-       /*h_rated = *it;
-       h_rating =  it->movieRating;*/
        while(it != movieList.end() && it->movieName.find(prefixes[i]) == 0){
         totals.push_back(*it);
-        /*if(it->movieRating > h_rating){
-            h_rating =  it->movieRating;
-            h_rated = *it;
-        }
-        it++;
-       }*/
       it++;
        }
        sort(totals.begin(), totals.end() , [] (const Movie& a, const Movie&b) {
@@ -109,14 +100,23 @@ sort(movieList.begin(), movieList.end());
         return a.movieName < b.movieName; 
         });
         for (Movie a: totals){
-        cout << a << endl;
+        cout << a << "\n";
        }
         h_ratings.push_back({prefixes[i], totals[0]});
-        cout<< endl;
+        cout<< "\n";
         totals.clear();
     }
     }
 
+/*if(it->movieRating > h_rating){
+            h_rating =  it->movieRating;
+            h_rated = *it;
+        }
+        it++;
+       }*/
+
+      /*h_rated = *it;
+       h_rating =  it->movieRating;*/
 
     //  For each prefix,
     //  Print the highest rated movie with that prefix if it exists.
