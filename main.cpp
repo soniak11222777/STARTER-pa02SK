@@ -81,7 +81,7 @@ sort(movieList.begin(), movieList.end());
         Movie a(prefixes[i], 0.0);
        vector<Movie>::iterator it = lower_bound(movieList.begin(),movieList.end(), a);
        if (it == movieList.end() || it->movieName.find(prefixes[i]) != 0){
-        cout << "No movies found with prefix "<< prefixes[i] << "\n";
+        cout << "No movies found with prefix "<< prefixes[i] << endl;
        }
        else {
        while(it != movieList.end() && it->movieName.find(prefixes[i]) == 0){
@@ -130,7 +130,11 @@ iterate through every prefix in the final result printing the name it is M*L.
 O(L *NlogN + M(LlogN + 2K*L + KlogK) +ML)
 but can be simplified as O(NlogN + MlogN)
 
-
+times
+input_20_random.csv, prefix_large.txt: 0.073s
+input_100_random.csv, prefix_large.txt: 0.050s
+input_1000_random.csv, prefix_large.txt: 0.048s
+input_76920_random.csv, prefix_large.txt: 1.450s
 
 
 */
