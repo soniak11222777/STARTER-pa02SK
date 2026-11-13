@@ -98,7 +98,7 @@ sort(movieList.begin(), movieList.end());
         cout << a << endl;
        }
         h_ratings.push_back({prefixes[i], totals[0]});
-        cout << "\n";
+        cout << endl;
         totals.clear();
     }
     }
@@ -115,7 +115,7 @@ sort(movieList.begin(), movieList.end());
 /* Add your run time analysis for part 3 of the assignment here as commented block*/
 
 /*
-
+The parameters that affect this runtime are n,m, and k.
 
 */
 
